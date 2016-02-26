@@ -18,7 +18,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Marcin
  */
 @Entity
-@XmlRootElement
 public class Gra implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,7 +34,7 @@ public class Gra implements Serializable {
     private boolean ruchGospodarza;
     private Long idZwyciescy;
     
-//    private List<Wybor> wybory;
+    private List<Wybor> wybory;
     
 
     public Long getId() {
