@@ -163,7 +163,7 @@ public class GraFacadeREST extends AbstractFacade<Gra> {
     @GET
     @Path("/dlagracza/{id}")
     @Produces({"application/json"})
-    public List<Gra> findRange(@PathParam("id") Long idOsoba) {
+    public List<Gra> dlaGracza(@PathParam("id") Long idOsoba) {
         return graRequest.wszystkieDostepneGry(idOsoba);
     }
     @GET
