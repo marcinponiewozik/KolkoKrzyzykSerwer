@@ -51,7 +51,7 @@ public class OsobaFacadeREST extends AbstractFacade<Osoba> {
 
     @POST
     @Path("/rejestracja")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes({"application/json"})
     public Response rejestracja(Osoba entity) {
         System.out.println(Arrays.toString(entity.getLogo()));
         if (osobaRequest.uzytkownikIstnieje(entity.getLogin(), entity.getHaslo())) {
