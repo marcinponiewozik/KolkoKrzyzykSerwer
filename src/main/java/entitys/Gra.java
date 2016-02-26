@@ -7,6 +7,7 @@ package entitys;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,6 +35,7 @@ public class Gra implements Serializable {
     private boolean ruchGospodarza;
     private Long idZwyciescy;
     
+    @ElementCollection
     private List<Wybor> wybory;
     
 
