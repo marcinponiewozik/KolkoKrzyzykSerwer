@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Marcin
  */
 @Entity
+@XmlRootElement
 public class Gra implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
