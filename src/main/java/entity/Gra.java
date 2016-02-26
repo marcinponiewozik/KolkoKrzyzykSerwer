@@ -26,10 +26,10 @@ public class Gra implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private Osoba gospodarz;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private Osoba przeciwnik;
+//    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+//    private Osoba gospodarz;
+//    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+//    private Osoba przeciwnik;
     
     private boolean zakonczona;
     private boolean ruchGospodarza;
@@ -65,21 +65,21 @@ public class Gra implements Serializable {
         return true;
     }
 
-    public Osoba getGospodarz() {
-        return gospodarz;
-    }
-
-    public void setGospodarz(Osoba gospodarz) {
-        this.gospodarz = gospodarz;
-    }
-
-    public Osoba getPrzeciwnik() {
-        return przeciwnik;
-    }
-
-    public void setPrzeciwnik(Osoba przeciwnik) {
-        this.przeciwnik = przeciwnik;
-    }
+//    public Osoba getGospodarz() {
+//        return gospodarz;
+//    }
+//
+//    public void setGospodarz(Osoba gospodarz) {
+//        this.gospodarz = gospodarz;
+//    }
+//
+//    public Osoba getPrzeciwnik() {
+//        return przeciwnik;
+//    }
+//
+//    public void setPrzeciwnik(Osoba przeciwnik) {
+//        this.przeciwnik = przeciwnik;
+//    }
 
     public boolean isZakonczona() {
         return zakonczona;

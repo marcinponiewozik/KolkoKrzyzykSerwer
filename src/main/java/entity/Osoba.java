@@ -29,8 +29,8 @@ public class Osoba implements Serializable {
     private String email;
     private int pkt;
     
-    @Lob
-    private byte[] logo; 
+//    @Lob
+//    private byte[] logo; 
     
     private int liczbaRozegranychGier;
     private int liczbaWygranych;
@@ -42,13 +42,13 @@ public class Osoba implements Serializable {
     }
 
     
-    public byte[] getLogo() {
-        return logo;
-    }
-
-    public void setLogo(byte[] logo) {
-        this.logo = logo;
-    }
+//    public byte[] getLogo() {
+//        return logo;
+//    }
+//
+//    public void setLogo(byte[] logo) {
+//        this.logo = logo;
+//    }
     
     public Long getId() {
         return id;
@@ -154,6 +154,6 @@ public class Osoba implements Serializable {
 
     @Override
     public String toString() {
-        return "{" + "\"id\":" + id + ",\"login\":" + login + ",\"haslo\":" + haslo + ",\"email\":" + email + ",\"pkt\":" + pkt + ",\"logo\":" + Arrays.toString(logo) + ",\"liczbaRozegranychGier\":" + liczbaRozegranychGier + ",\"liczbaWygranych\":" + liczbaWygranych + ",\"liczbaRemisow\":" + liczbaRemisow + ",\"liczbaPorazek\":" + liczbaPorazek + ",\"liczbaSkonczonychGier\":" + liczbaSkonczonychGier + '}';
+        return "{" + "\"id\":" + id + ",\"login\":" + login + ",\"haslo\":" + haslo + ",\"email\":" + email + ",\"pkt\":" + pkt + ",\"logo\":" + ",\"liczbaRozegranychGier\":" + liczbaRozegranychGier + ",\"liczbaWygranych\":" + liczbaWygranych + ",\"liczbaRemisow\":" + liczbaRemisow + ",\"liczbaPorazek\":" + liczbaPorazek + ",\"liczbaSkonczonychGier\":" + liczbaSkonczonychGier + '}';
     }
 }
