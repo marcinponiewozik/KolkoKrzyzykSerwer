@@ -35,7 +35,7 @@ public class Gra implements Serializable {
     private boolean ruchGospodarza;
     private Long idZwyciescy;
     
-    private List<Wybor> wybory;
+//    private List<Wybor> wybory;
     
 
     public Long getId() {
@@ -98,13 +98,13 @@ public class Gra implements Serializable {
         this.ruchGospodarza = ruchGospodarza;
     }
 
-    public List<Wybor> getWybory() {
-        return wybory;
-    }
-
-    public void setWybory(List<Wybor> wybory) {
-        this.wybory = wybory;
-    }
+//    public List<Wybor> getWybory() {
+//        return wybory;
+//    }
+//
+//    public void setWybory(List<Wybor> wybory) {
+//        this.wybory = wybory;
+//    }
 
     public Long getIdZwyciescy() {
         return idZwyciescy;
