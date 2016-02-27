@@ -110,7 +110,8 @@ public class GraRequest {
     private final String[] wygrana = {"123", "456", "789", "147", "258", "369", "159", "357"};
 
     public boolean sprawdzStanGr(Long idGra) {
-        Gra gra = manager.find(Gra.class, idGra);
+        Gra gra = new Gra();
+        gra =znajdz(idGra);
         if (gra.getWybory().size() < 5) {
             return false;
         }
