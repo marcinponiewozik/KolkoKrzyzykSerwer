@@ -7,6 +7,7 @@ package entitys;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,7 +33,7 @@ public class Osoba implements Serializable {
     private int pkt;
     
     @Lob
-    private byte[] logo; 
+    private String logo; 
     
     private int liczbaRozegranychGier;
     private int liczbaWygranych;
@@ -43,14 +44,16 @@ public class Osoba implements Serializable {
     public Osoba() {
     }
 
-    
-    public byte[] getLogo() {
+    public String getLogo() {
         return logo;
     }
 
-    public void setLogo(byte[] logo) {
+    public void setLogo(String logo) {
         this.logo = logo;
     }
+
+    
+    
     
     public Long getId() {
         return id;
@@ -156,6 +159,6 @@ public class Osoba implements Serializable {
 
     @Override
     public String toString() {
-        return "{" + "\"id\":" + id + ",\"login\":" + login + ",\"haslo\":" + haslo + ",\"email\":" + email + ",\"pkt\":" + pkt + ",\"logo\":" + Arrays.toString(logo) + ",\"liczbaRozegranychGier\":" + liczbaRozegranychGier + ",\"liczbaWygranych\":" + liczbaWygranych + ",\"liczbaRemisow\":" + liczbaRemisow + ",\"liczbaPorazek\":" + liczbaPorazek + ",\"liczbaSkonczonychGier\":" + liczbaSkonczonychGier + '}';
+        return "{" + "\"id\":" + id + ",\"login\":" + login + ",\"haslo\":" + haslo + ",\"email\":" + email + ",\"pkt\":" + pkt + ",\"logo\":" + logo + ",\"liczbaRozegranychGier\":" + liczbaRozegranychGier + ",\"liczbaWygranych\":" + liczbaWygranych + ",\"liczbaRemisow\":" + liczbaRemisow + ",\"liczbaPorazek\":" + liczbaPorazek + ",\"liczbaSkonczonychGier\":" + liczbaSkonczonychGier + '}';
     }   
 }
