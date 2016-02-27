@@ -31,7 +31,7 @@ public class Gra implements Serializable {
     
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private Osoba gospodarz;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private Osoba przeciwnik;
     
     
