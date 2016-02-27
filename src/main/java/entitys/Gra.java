@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -68,6 +69,7 @@ public class Gra implements Serializable {
         return true;
     }
 
+    @XmlTransient
     public List<Osoba> getGracze() {
         return gracze;
     }
