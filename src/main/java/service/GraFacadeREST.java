@@ -180,6 +180,13 @@ public class GraFacadeREST extends AbstractFacade<Gra> {
         return String.valueOf(super.count());
     }
 
+    @GET
+    @Override
+    @Produces({"application/json"})
+    public List<Gra> findAll() {
+        return super.findAll();
+    }
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;
