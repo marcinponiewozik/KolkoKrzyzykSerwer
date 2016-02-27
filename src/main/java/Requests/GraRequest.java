@@ -35,7 +35,7 @@ public class GraRequest {
     }
 
     public Gra znajdzPoIdOsoba(Long idOsoba) {
-        Query q = manager.createQuery("SELECT g FROM Gra g WHERE g.gracze.id:idOsoba", Gra.class);
+        Query q = manager.createQuery("SELECT g FROM Gra g WHERE g.gracze.id=:idOsoba", Gra.class);
         q.setParameter("idOsoba", idOsoba);
         Gra gra = new Gra();
         if (q.getResultList().isEmpty()) {
