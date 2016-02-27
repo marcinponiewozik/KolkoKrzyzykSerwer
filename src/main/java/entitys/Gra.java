@@ -7,14 +7,13 @@ package entitys;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -29,11 +28,9 @@ public class Gra implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private Osoba gospodarz;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    private Osoba przeciwnik;
-    
+    @ManyToMany
+    @JoinTable(name = "Gra_Osoba")
+    private List<Osoba> gracze;
     
     private boolean zakonczona;
     private boolean ruchGospodarza;
@@ -71,21 +68,15 @@ public class Gra implements Serializable {
         return true;
     }
 
-    public Osoba getGospodarz() {
-        return gospodarz;
+    public List<Osoba> getGracze() {
+        return gracze;
     }
 
-    public void setGospodarz(Osoba gospodarz) {
-        this.gospodarz = gospodarz;
+    public void setGracze(List<Osoba> gracze) {
+        this.gracze = gracze;
     }
 
-    public Osoba getPrzeciwnik() {
-        return przeciwnik;
-    }
-
-    public void setPrzeciwnik(Osoba przeciwnik) {
-        this.przeciwnik = przeciwnik;
-    }
+    
 
     public boolean isZakonczona() {
         return zakonczona;

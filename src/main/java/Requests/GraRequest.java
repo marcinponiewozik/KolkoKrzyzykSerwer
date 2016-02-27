@@ -49,7 +49,8 @@ public class GraRequest {
     }
 
     public void dodajPrzeciwnika(Gra gra, Osoba przeciwnik) {
-        gra.setPrzeciwnik(przeciwnik);
+        gra.getGracze().add(przeciwnik);
+//        gra.setPrzeciwnik(przeciwnik);
         manager.merge(gra);
     }
 
@@ -78,10 +79,13 @@ public class GraRequest {
     }
     
     public boolean brakPrzeciwnika(Long idGra){
-        Query q = manager.createQuery("SELECT g.przeciwnik FROM Gra g WHERE g.id =:idGra", Osoba.class);
-        q.setParameter("idGra", idGra);
-        Osoba o = (Osoba) q.getSingleResult();
-        return o==null;
+//        Query q = manager.createQuery("SELECT g.przeciwnik FROM Gra g WHERE g.id =:idGra", Osoba.class);
+//        q.setParameter("idGra", idGra);
+//        Osoba o = (Osoba) q.getSingleResult();
+        Gra gra = new Gra();
+        gra = znajdz(idGra);
+        
+        return gra.getGracze().size()==1;
     }
     
     private final String[] wygrana = {"123", "456", "789", "147", "258", "369", "159", "357"};
@@ -93,7 +97,7 @@ public class GraRequest {
         List<Wybor> przeciwnik = new ArrayList<Wybor>();
         
         for (Wybor w : gra.getWybory()) {
-            if (Objects.equals(w.getIdOsoba(), gra.getGospodarz().getId())) {//gracz 1
+            if (Objects.equals(w.getIdOsoba(), gra.getGracze().get(0).getId())) {//gracz 1
                 gospodarz.add(w);
             }
             else{
@@ -114,13 +118,13 @@ public class GraRequest {
         //sprawdz wygrana
         for (String wygrana1 : wygrana) {
             if (sprawdzWygrana(wygrana1, wyboryGospodarzString)) { 
-                gra.setIdZwyciescy(gra.getGospodarz().getId());
+                gra.setIdZwyciescy(gra.getGracze().get(0).getId());
 //                gra.setZakonczona(true);
                 zamien(idGra, gra);
                 return true;                
             }
             if (sprawdzWygrana(wygrana1, wyboryPrzeciwnikaString)) {
-                gra.setIdZwyciescy(gra.getPrzeciwnik().getId());
+                gra.setIdZwyciescy(gra.getGracze().get(1).getId());
 //                gra.setZakonczona(true);
                 zamien(idGra, gra);
                 return true;
