@@ -7,7 +7,6 @@ package service;
 
 import Requests.OsobaRequest;
 import entitys.Osoba;
-import java.util.Arrays;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
