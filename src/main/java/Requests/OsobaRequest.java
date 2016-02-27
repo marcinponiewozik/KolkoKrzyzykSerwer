@@ -55,7 +55,7 @@ public class OsobaRequest {
     }
 
     public List<Osoba> ranking(Integer przedzial) {
-        Query q = manager.createQuery("SELECT o FROM Osoba o ORDER BY O.pkt DESC", null);
+        Query q = manager.createQuery("SELECT o FROM Osoba o ORDER BY o.pkt DESC", Osoba.class);
         q.setMaxResults(150);
         List<Osoba> listaGraczy = new ArrayList<Osoba>();
         listaGraczy = q.getResultList();
