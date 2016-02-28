@@ -30,6 +30,17 @@ public class Test implements Serializable {
     
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private Osoba gospodarz;
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    private Osoba przeciwnik;
+
+    public Osoba getPrzeciwnik() {
+        return przeciwnik;
+    }
+
+    public void setPrzeciwnik(Osoba przeciwnik) {
+        this.przeciwnik = przeciwnik;
+    }
+    
     
     
     public Long getId() {
