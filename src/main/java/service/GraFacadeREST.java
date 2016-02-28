@@ -50,7 +50,7 @@ public class GraFacadeREST extends AbstractFacade<Gra> {
     @Override
     @Consumes({"application/json"})
     public void create(Gra entity) {
-        Osoba osoba = osobaRequest.wezOsobaPoId(entity.getGracze().get(0).getId());
+        Osoba osoba = osobaRequest.wezOsobaPoId(entity.getGospodarz().getId());
         osoba.setLiczbaRozegranychGier(osoba.getLiczbaRozegranychGier()+1);
         osobaRequest.zamien(osoba);
         super.create(entity);
@@ -110,10 +110,10 @@ public class GraFacadeREST extends AbstractFacade<Gra> {
                     osobaRequest.zamien(zwyciesca);
 
                     Osoba przegrany;
-                    if (gra.getGracze().get(0).getId().equals(gra.getIdZwyciescy())) {
-                        przegrany = osobaRequest.wezOsobaPoId(gra.getGracze().get(1).getId());
+                    if (gra.getGospodarz().getId().equals(gra.getIdZwyciescy())) {
+                        przegrany = osobaRequest.wezOsobaPoId(gra.getPrzeciwnik().getId());
                     } else {
-                        przegrany = osobaRequest.wezOsobaPoId(gra.getGracze().get(0).getId());
+                        przegrany = osobaRequest.wezOsobaPoId(gra.getGospodarz().getId());
                     }
 
                     przegrany.setLiczbaPorazek(przegrany.getLiczbaPorazek()+1);
@@ -125,8 +125,8 @@ public class GraFacadeREST extends AbstractFacade<Gra> {
                     }
                     osobaRequest.zamien(przegrany);
                 }else{
-                    Osoba gospodarz = gra.getGracze().get(0);
-                    Osoba przeciwnik = gra.getGracze().get(1);
+                    Osoba gospodarz = gra.getGospodarz();
+                    Osoba przeciwnik = gra.getPrzeciwnik();
                     gospodarz.setLiczbaRemisow(gospodarz.getLiczbaRemisow()+1);
                     gospodarz.setLiczbaSkonczonychGier(gospodarz.getLiczbaSkonczonychGier()+1);
                     przeciwnik.setLiczbaRemisow(przeciwnik.getLiczbaRemisow()+1);
@@ -180,13 +180,6 @@ public class GraFacadeREST extends AbstractFacade<Gra> {
         return String.valueOf(super.count());
     }
 
-    @GET
-    @Override
-    @Produces({"application/json"})
-    public List<Gra> findAll() {
-        return super.findAll();
-    }
-    
     @Override
     protected EntityManager getEntityManager() {
         return em;
