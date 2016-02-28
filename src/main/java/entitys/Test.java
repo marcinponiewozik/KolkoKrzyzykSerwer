@@ -32,6 +32,38 @@ public class Test implements Serializable {
     private Osoba gospodarz;
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private Osoba przeciwnik;
+    
+    
+    private boolean zakonczona;
+    private boolean ruchGospodarza;
+    private Long idZwyciescy;
+
+    
+    public boolean isZakonczona() {
+        return zakonczona;
+    }
+
+    public void setZakonczona(boolean zakonczona) {
+        this.zakonczona = zakonczona;
+    }
+
+    public boolean isRuchGospodarza() {
+        return ruchGospodarza;
+    }
+
+    public void setRuchGospodarza(boolean ruchGospodarza) {
+        this.ruchGospodarza = ruchGospodarza;
+    }
+
+    public Long getIdZwyciescy() {
+        return idZwyciescy;
+    }
+
+    public void setIdZwyciescy(Long idZwyciescy) {
+        this.idZwyciescy = idZwyciescy;
+    }
+    
+    
 
     public Osoba getPrzeciwnik() {
         return przeciwnik;
