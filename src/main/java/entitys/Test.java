@@ -45,6 +45,8 @@ public class Test implements Serializable {
     private List<Wybor> wybory = new ArrayList<Wybor>();
 
     public List<Wybor> getWybory() {
+        wybory=new ArrayList<Wybor>();
+        
         return wybory;
     }
 
