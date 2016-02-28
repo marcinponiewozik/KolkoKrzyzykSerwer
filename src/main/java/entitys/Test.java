@@ -6,7 +6,9 @@
 package entitys;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -38,6 +40,17 @@ public class Test implements Serializable {
     private boolean ruchGospodarza;
     private Long idZwyciescy;
 
+    @ElementCollection
+    private List<Wybor> wybory;
+
+    public List<Wybor> getWybory() {
+        return wybory;
+    }
+
+    public void setWybory(List<Wybor> wybory) {
+        this.wybory = wybory;
+    }
+    
     
     public boolean isZakonczona() {
         return zakonczona;
