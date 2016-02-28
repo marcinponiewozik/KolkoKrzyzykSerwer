@@ -70,7 +70,7 @@ public class TestFacadeREST extends AbstractFacade<Test> {
 
     @GET
     @Path("{from}/{to}")
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<Test> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
