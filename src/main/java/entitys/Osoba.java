@@ -33,7 +33,7 @@ public class Osoba implements Serializable {
     private int pkt;
     
     @Lob
-    private String logo; 
+    private byte[] logo; 
     
     private int liczbaRozegranychGier;
     private int liczbaWygranych;
@@ -44,15 +44,13 @@ public class Osoba implements Serializable {
     public Osoba() {
     }
 
-    public String getLogo() {
+    public byte[] getLogo() {
         return logo;
     }
 
-    public void setLogo(String logo) {
+    public void setLogo(byte[] logo) {
         this.logo = logo;
-    }
-
-    
+    }  
     
     
     public Long getId() {
