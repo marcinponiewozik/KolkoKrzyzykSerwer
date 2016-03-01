@@ -33,16 +33,18 @@ public class GraRequest {
     public Gra znajdz(Long id) {
         return manager.find(Gra.class, id);
     }
-    public Gra znajdzPoIdOsoba(Long idOsoba){
+
+    public Gra znajdzPoIdOsoba(Long idOsoba) {
         Query q = manager.createQuery("SELECT g FROM Gra g WHERE g.gospodarz.id=:idOsoba", Gra.class);
         q.setParameter("idOsoba", idOsoba);
         Gra gra = new Gra();
-        if(q.getResultList().isEmpty()){
+        if (q.getResultList().isEmpty()) {
             return null;
-        }else{
-            return (Gra) q.getResultList().get(q.getResultList().size()-1);
+        } else {
+            return (Gra) q.getResultList().get(q.getResultList().size() - 1);
         }
     }
+
     public void zamien(Long idGra, Gra gra) {
         gra.setId(idGra);
         manager.merge(gra);
@@ -65,59 +67,73 @@ public class GraRequest {
         list = q.getResultList();
         return list;
     }
-    
-    public List<Gra> wszystkieDostepneGry(Long idOsoba){
-        Query q= manager.createQuery("SELECT g FROM Gra g WHERE g.przeciwnik IS NULL AND g.gospodarz.id <> :idOsoba", Gra.class);
-        q.setParameter("idOsoba", idOsoba);
-        return q.getResultList();
+
+    public List<Gra> wszystkieDostepneGry(Long idOsoba) {
+        List<Gra> lista = new ArrayList<Gra>();
+        try {
+            Query q = manager.createQuery("SELECT g FROM Gra g WHERE g.przeciwnik IS NULL AND g.gospodarz.id <> :idOsoba", Gra.class);
+            q.setParameter("idOsoba", idOsoba);
+            lista = q.getResultList();
+            for (Gra lista1 : lista) {
+                if (lista1.getWybory() == null || lista1.getWybory().isEmpty()) {
+                    lista1.setWybory(new ArrayList<Wybor>());                
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Blad");
+        }
+
+        return lista;
     }
-    public List<Gra> gryGracza(String login){
-        Query q= manager.createQuery("SELECT g FROM Gra g WHERE g.przeciwnik IS NULL AND g.gospodarz.login=:login", Gra.class);
+
+    public List<Gra> gryGracza(String login) {
+        Query q = manager.createQuery("SELECT g FROM Gra g WHERE g.przeciwnik IS NULL AND g.gospodarz.login=:login", Gra.class);
         q.setParameter("login", login);
         return q.getResultList();
     }
-    
-    public boolean brakPrzeciwnika(Long idGra){
+
+    public boolean brakPrzeciwnika(Long idGra) {
         Query q = manager.createQuery("SELECT g.przeciwnik FROM Gra g WHERE g.id =:idGra", Osoba.class);
         q.setParameter("idGra", idGra);
         Osoba o = (Osoba) q.getSingleResult();
-        return o==null;
+        return o == null;
     }
-    
+
     private final String[] wygrana = {"123", "456", "789", "147", "258", "369", "159", "357"};
-    public boolean sprawdzStanGr(Long idGra){
+
+    public boolean sprawdzStanGr(Long idGra) {
         Gra gra = manager.find(Gra.class, idGra);
-        if(gra.getWybory().size()<5)
+        if (gra.getWybory().size() < 5) {
             return false;
+        }
         List<Wybor> gospodarz = new ArrayList<Wybor>();
         List<Wybor> przeciwnik = new ArrayList<Wybor>();
-        
+
         for (Wybor w : gra.getWybory()) {
             if (Objects.equals(w.getIdOsoba(), gra.getGospodarz().getId())) {//gracz 1
                 gospodarz.add(w);
-            }
-            else{
+            } else {
                 przeciwnik.add(w);
             }
-        }        
+        }
         //gracz1
-        String wyboryGospodarzString= null;
+        String wyboryGospodarzString = null;
         for (Wybor gospodarz1 : gospodarz) {
-            wyboryGospodarzString += String.valueOf(gospodarz1.getPole());            
+            wyboryGospodarzString += String.valueOf(gospodarz1.getPole());
         }
         //gracz2
-        String wyboryPrzeciwnikaString= null;
+        String wyboryPrzeciwnikaString = null;
         for (Wybor przeciwnik1 : przeciwnik) {
-            wyboryPrzeciwnikaString += String.valueOf(przeciwnik1.getPole());               
+            wyboryPrzeciwnikaString += String.valueOf(przeciwnik1.getPole());
         }
-        
+
         //sprawdz wygrana
         for (String wygrana1 : wygrana) {
-            if (sprawdzWygrana(wygrana1, wyboryGospodarzString)) { 
+            if (sprawdzWygrana(wygrana1, wyboryGospodarzString)) {
                 gra.setIdZwyciescy(gra.getGospodarz().getId());
 //                gra.setZakonczona(true);
                 zamien(idGra, gra);
-                return true;                
+                return true;
             }
             if (sprawdzWygrana(wygrana1, wyboryPrzeciwnikaString)) {
                 gra.setIdZwyciescy(gra.getPrzeciwnik().getId());
@@ -125,21 +141,21 @@ public class GraRequest {
                 zamien(idGra, gra);
                 return true;
             }
-        }        
-        return false;        
+        }
+        return false;
     }
-    
-    
-    public boolean sprawdzWygrana(String wzor, String wyboryGracza){
-        int licznik=0;
+
+    public boolean sprawdzWygrana(String wzor, String wyboryGracza) {
+        int licznik = 0;
         for (int i = 0; i < wyboryGracza.length(); i++) {
-            if(wzor.indexOf(wyboryGracza.charAt(i))!=-1){
+            if (wzor.indexOf(wyboryGracza.charAt(i)) != -1) {
                 licznik++;
-            }            
-        }        
-        if(licznik==3)
+            }
+        }
+        if (licznik == 3) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 }
