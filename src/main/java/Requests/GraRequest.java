@@ -93,10 +93,9 @@ public class GraRequest {
     }
 
     public boolean brakPrzeciwnika(Long idGra) {
-        Query q = manager.createQuery("SELECT g.przeciwnik FROM Gra g WHERE g.id =:idGra", Osoba.class);
-        q.setParameter("idGra", idGra);
-        Osoba o = (Osoba) q.getSingleResult();
-        return o == null;
+        Gra gra = new Gra();
+        gra = manager.find(Gra.class, idGra);
+        return gra.getPrzeciwnik()==null;
     }
 
     private final String[] wygrana = {"123", "456", "789", "147", "258", "369", "159", "357"};
