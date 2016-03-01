@@ -6,6 +6,7 @@
 package entitys;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
@@ -104,6 +105,8 @@ public class Gra implements Serializable {
     }
 
     public List<Wybor> getWybory() {
+        if(wybory==null||wybory.isEmpty())
+            wybory = new ArrayList<Wybor>();
         return wybory;
     }
 
