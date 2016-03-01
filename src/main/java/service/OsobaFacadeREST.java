@@ -52,6 +52,7 @@ public class OsobaFacadeREST extends AbstractFacade<Osoba> {
     @Path("/rejestracja")
     @Consumes({"application/json"})
     public Response rejestracja(Osoba entity) {
+        
         if (osobaRequest.uzytkownikIstnieje(entity.getLogin(), entity.getHaslo())) {
             return Response.status(Response.Status.CONFLICT).build();
         }        
