@@ -141,6 +141,8 @@ public class GraRequest {
                 return true;
             }
         }
+        if(gra.getWybory().size()==9)
+            return true;
         return false;
     }
 

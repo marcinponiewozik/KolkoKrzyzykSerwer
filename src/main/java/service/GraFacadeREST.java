@@ -110,7 +110,7 @@ public class GraFacadeREST extends AbstractFacade<Gra> {
             gra = graRequest.znajdz(id);
             
             if (!gra.isZakonczona()) {
-                if (!gra.getIdZwyciescy().equals(0L)) {
+                if (!gra.getIdZwyciescy().equals(null)) {
                     Osoba zwyciesca = osobaRequest.wezOsobaPoId(gra.getIdZwyciescy());                    
                     zwyciesca.setPkt(zwyciesca.getPkt() + 100);
                     zwyciesca.setLiczbaWygranych(zwyciesca.getLiczbaWygranych()+1);
