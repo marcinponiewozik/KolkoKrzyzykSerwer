@@ -74,22 +74,18 @@ public class GraFacadeREST extends AbstractFacade<Gra> {
     @Path("/dolacz/{id}/{idOsoba}")
     @Consumes({"application/json"})
     public Response dolacz(@PathParam("id") Long id, @PathParam("idOsoba") Long idOsoba, Gra entity) {
-        System.out.println("1");
         Osoba przeciwnik = new Osoba();
-        System.out.println("2");
         przeciwnik = osobaRequest.wezOsobaPoId(idOsoba);
-        System.out.println("3");
         Gra graDB = new Gra();
         graDB = graRequest.znajdz(id);
-        System.out.println("4");
         if (graRequest.brakPrzeciwnika(id)) {
-            System.out.println("5");
+     
             graRequest.dodajPrzeciwnika(entity, przeciwnik);
-            System.out.println("6");
+          
             przeciwnik.setLiczbaRozegranychGier(przeciwnik.getLiczbaRozegranychGier()+1);
-            System.out.println("7");
+           
             osobaRequest.zamien(przeciwnik);
-            System.out.println("8");
+           
             return Response.status(Response.Status.OK).build();
         } else {
             return Response.status(Response.Status.CONFLICT).build();

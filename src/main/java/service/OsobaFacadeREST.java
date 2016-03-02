@@ -64,10 +64,8 @@ public class OsobaFacadeREST extends AbstractFacade<Osoba> {
     @Path("{id}")
     @Consumes({"application/json"})
     public void edit(@PathParam("id") Long id, Osoba entity) {
-        System.out.println("Start");
         entity.setId(id);
         osobaRequest.zamien(entity);
-        System.out.println("STOP");
     }
 
     @DELETE
