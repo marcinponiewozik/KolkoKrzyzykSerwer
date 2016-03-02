@@ -53,6 +53,7 @@ public class GraFacadeREST extends AbstractFacade<Gra> {
         Osoba osoba = osobaRequest.wezOsobaPoId(entity.getGospodarz().getId());
         osoba.setLiczbaRozegranychGier(osoba.getLiczbaRozegranychGier()+1);
         osobaRequest.zamien(osoba);
+        
         super.create(entity);
     }
 
